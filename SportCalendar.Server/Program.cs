@@ -17,6 +17,7 @@ namespace SportCalendar.Server
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.RegisterService();
             builder.Services.RegisterRepositoriesDependencies();
             builder.Services.AddCors(options =>
             {

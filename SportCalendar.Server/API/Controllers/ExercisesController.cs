@@ -42,4 +42,12 @@ public class ExercisesController : ControllerBase
         await _service.DeleteAsync(id);
         return NoContent();
     }
+    [HttpGet("month")]
+    public async Task<IActionResult> GetMonth(int year, int month)
+    {
+        var result =
+            await _service.GetMonthExercises(year, month);
+
+        return Ok(result);
+    }
 }

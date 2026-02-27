@@ -40,5 +40,14 @@ namespace SportCalendar.Server.Infrastructure.Repositories
         {
             return await _context.Exercises.FindAsync(id);
         }
+        public async Task<List<Exercise>> GetByMonth(int year, int month)
+        {
+            return await _context.Exercises
+                .Include(e => e.ExerciseType)
+                .Where(e =>
+                    e.ExerciseDate.Year == year &&
+                    e.ExerciseDate.Month == month)
+                .ToListAsync();
+        }
     }
 }

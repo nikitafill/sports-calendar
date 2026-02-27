@@ -10,5 +10,6 @@ namespace SportCalendar.Server.Application.Interfaces
         void Delete(Exercise exercise);
         Task SaveChangesAsync();
         Task<Exercise?> GetByIdAsync(int id);
+        Task<List<Exercise>> GetByMonth(int year, int month);
     }
 }
