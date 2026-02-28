@@ -63,6 +63,7 @@ export default function DayDashboardModal({
 
                 <div>
                     <select
+                        style={blockStyle}
                         value={typeId}
                         onChange={e => setTypeId(e.target.value)}
                     >
@@ -75,12 +76,20 @@ export default function DayDashboardModal({
                     </select>
 
                     <input
+                        style={blockStyle}
                         type="number"
                         placeholder="Progress"
                         value={progress}
                         onChange={e => setProgress(e.target.value)}
                     />
-
+                    {types.find(t => t.id === Number(typeId))?.progressUnit
+                        &&
+                        <span>
+                            {
+                                types.find(t => t.id === Number(typeId)).progressUnit
+                            }
+                        </span>
+                    }
                     <button onClick={addExercise}>
                         Add
                     </button>
@@ -97,6 +106,7 @@ export default function DayDashboardModal({
                         {e.progressUnit}
 
                         <select
+                            style={blockStyle}
                             value={e.status}
                             onChange={(ev) =>
                                 changeStatus(e.id, Number(ev.target.value))
@@ -143,4 +153,12 @@ const modalStyle = {
     width: 500,
     maxHeight: "80vh",
     overflowY: "auto"
+};
+const blockStyle = {
+    padding: "8px 12px",
+    borderRadius: 6,
+    border: "1px solid #ccc",
+    background: "white",
+    cursor: "pointer",
+    fontSize: 14
 };

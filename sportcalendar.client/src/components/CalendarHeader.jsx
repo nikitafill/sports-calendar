@@ -29,18 +29,4 @@ export default function CalendarHeader({ date, setDate }) {
             <button onClick={nextMonth}>Next</button>
         </div>
     );
-    /*return (
-        <div style={{ display: "flex", gap: 20 }}>
-            <button onClick={prevMonth}>Previous</button>
-
-            <h2>
-                {date.toLocaleString("default", {
-                    month: "long",
-                    year: "numeric"
-                })}
-            </h2>
-
-            <button onClick={nextMonth}>Next</button>
-        </div>
-    );*/
 }

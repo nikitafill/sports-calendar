@@ -1,10 +1,19 @@
 export default function CalendarDay({ data, onClick }) {
 
-    if (data.empty)
-        return <div style={{ background: "#eee", height: 100, width: 100 }} />;
-
-    const today =
-        new Date().toISOString().split("T")[0];
+    if (data.outsideMonth)
+        return (
+            <div
+                style={{
+                    background: "#eee",
+                    height: 100,
+                    width: 100,
+                    color: "#999"
+                }}
+            >
+                {data.day}
+            </div>
+        );
+    const today = new Date().toISOString().split("T")[0];
 
     const isToday = today === data.date;
 

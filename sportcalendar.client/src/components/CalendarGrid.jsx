@@ -10,7 +10,7 @@ export default function CalendarGrid({ date, activeDays, onDayClick })
     const startDay = firstDay.getDay() || 7;
 
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
+    const prevMonthDays = new Date(year, month, 0).getDate();
     const exerciseMap = {};
     activeDays.forEach(d => {
         exerciseMap[d.date] = d.exercises;
@@ -18,8 +18,11 @@ export default function CalendarGrid({ date, activeDays, onDayClick })
 
     const cells = [];
 
-    for (let i = 1; i < startDay; i++) {
-        cells.push({ empty: true });
+    for (let i = startDay - 1; i > 0; i--) {
+        cells.push({
+            day: prevMonthDays - i + 1,
+            outsideMonth: true
+        });
     }
 
     for (let d = 1; d <= daysInMonth; d++) {
@@ -33,7 +36,15 @@ export default function CalendarGrid({ date, activeDays, onDayClick })
             empty: false
         });
     }
+    const totalCells = cells.length <= 35 ? 35 : 42;
+    const remaining = totalCells - cells.length;
 
+    for (let i = 1; i <= remaining; i++) {
+        cells.push({
+            day: i,
+            outsideMonth: true
+        });
+    }
     return (
         <div
             style={{
